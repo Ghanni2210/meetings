@@ -16,23 +16,19 @@ router.post('/meetings', async function (req, res) {
         let meeting = await data.save();
         res.send({ status: "success", data: meeting })
     }
-})
+});
 
-// async function findMeetings(query) {
-//     return await meetingsModel.find(query);
-// }
 
 router.get('/meetings/:id', async function (req, res) {
     try {
         let meetingId = req.params.id;
-        // let meetings = findMeetings({ id: meetingId })
         let meetings = await meetingsModel.find({ id: meetingId });
         res.send({ status: "success", data: meetings })
     } catch (error) {
         console.log(error.stack);
         res.status(500).send('Invalid id')
     }
-})
+});
 
 
 router.get('/meetings', async function (req, res) {
@@ -51,7 +47,7 @@ router.get('/meetings', async function (req, res) {
     } else {
         res.send({ status: "error", data: "Invalid data" })
     }
-})
+});
 
 
 module.exports = router
